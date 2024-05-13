@@ -1,0 +1,60 @@
+[submodule "vendor/nim-chronos"]
+	path = vendor/nim-chronos
+	url = https://github.com/status-im/nim-chronos
+[submodule "vendor/nim-ethers"]
+	path = vendor/nim-ethers
+	url = https://github.com/status-im/nim-ethers
+[submodule "vendor/vendor/nim-serde"]
+	path = vendor/vendor/nim-serde
+	url = https://github.com/codex-storage/nim-serde
+[submodule "vendor/vendor/nim-stint"]
+	path = vendor/vendor/nim-stint
+	url = https://github.com/status-im/nim-stint
+[submodule "vendor/nim-stint"]
+	path = vendor/nim-stint
+	url = https://github.com/status-im/nim-stint
+[submodule "vendor/nim-serde"]
+	path = vendor/nim-serde
+	url = https://github.com/codex-storage/nim-serde
+[submodule "vendor/nim-json-rpc"]
+	path = vendor/nim-json-rpc
+	url = https://github.com/status-im/nim-json-rpc
+[submodule "vendor/nim-chronicles"]
+	path = vendor/nim-chronicles
+	url = https://github.com/status-im/nim-chronicles
+[submodule "vendor/nim-faststreams"]
+	path = vendor/nim-faststreams
+	url = https://github.com/status-im/nim-faststreams
+[submodule "vendor/nim-stew"]
+	path = vendor/nim-stew
+	url = https://github.com/status-im/nim-stew
+[submodule "vendor/nim-json-serialization"]
+	path = vendor/nim-json-serialization
+	url = https://github.com/status-im/nim-json-serialization
+[submodule "vendor/nim-serialization"]
+	path = vendor/nim-serialization
+	url = https://github.com/status-im/nim-serialization
+[submodule "vendor/questionable"]
+	path = vendor/questionable
+	url = https://github.com/codex-storage/questionable
+[submodule "vendor/nim-results"]
+	path = vendor/nim-results
+	url = https://github.com/arnetheduck/nim-results
+[submodule "vendor/nim-contract-abi"]
+	path = vendor/nim-contract-abi
+	url = https://github.com/codex-storage/nim-contract-abi
+[submodule "vendor/upraises"]
+	path = vendor/upraises
+	url = https://github.com/markspanbroek/upraises
+[submodule "vendor/nim-eth"]
+	path = vendor/nim-eth
+	url = https://github.com/status-im/nim-eth
+[submodule "vendor/nimcrypto"]
+	path = vendor/nimcrypto
+	url = https://github.com/cheatfate/nimcrypto
+[submodule "vendor/nim-http-utils"]
+	path = vendor/nim-http-utils
+	url = https://github.com/status-im/nim-http-utils
+[submodule "vendor/nim-bearssl"]
+	path = vendor/nim-bearssl
+	url = https://github.com/status-im/nim-bearssl
