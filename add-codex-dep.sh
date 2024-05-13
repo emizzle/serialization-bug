@@ -20,10 +20,13 @@ echo "  - remote: ${remote}"
 cd "${project_root}"
 
 if [ -d "./vendor/${dep}" ]; then
-  echo "Dependency ${dep} already exists. Skip adding."
+  echo "2. Dependency ${dep} already exists. Skip adding."
 else
   echo "2. Add submodule at ${project_root}/vendor/${dep}"
   git submodule add "${remote}" "./vendor/${dep}"
+
+  echo "2a. Checkout nested submodules."
+  git submodule update --init --recursive
 fi
 
 cd "./vendor/${dep}"

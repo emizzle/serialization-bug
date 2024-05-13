@@ -52,3 +52,12 @@
 [submodule "vendor/stint"]
 	path = vendor/stint
 	url = https://github.com/status-im/stint.git
+[submodule "vendor/nim-websock"]
+	path = vendor/nim-websock
+	url = https://github.com/status-im/nim-websock.git
+[submodule "vendor/nim-zlib"]
+	path = vendor/nim-zlib
+	url = https://github.com/status-im/nim-zlib
+[submodule "vendor/nim-secp256k1"]
+	path = vendor/nim-secp256k1
+	url = https://github.com/status-im/nim-secp256k1.git
