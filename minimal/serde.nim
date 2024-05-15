@@ -17,11 +17,3 @@ proc fromJson*[T](_: type Option[T]) =
     echo currentSourcePath()
 
   T.fromJson()
-
-proc fromJson*[T: ref object or object](_: type Option[T], json: string) = 
-  static:
-    echo "instantiate fromJson serde ref object or object ", T
-    echo currentSourcePath()
-
-  echo "String is ", json
-  Option[T].fromJson()
