@@ -21,6 +21,9 @@ template expectJsonKind*(expectedType: type, expectedKind: JsonNodeKind, json: J
   expectJsonKind(expectedType, {expectedKind}, json)
 
 proc fromJson*(T: typedesc[StUint or StInt], json: JsonNode): ?!T =
+  static:
+    echo "Instantiate serde fromJson StUint or StInt ", T
+
   echo "Dispatch to nim-serde"
   expectJsonKind(T, JString, json)
   let jsonStr = json.getStr
@@ -40,6 +43,9 @@ proc fromJson*(T: typedesc[StUint or StInt], json: JsonNode): ?!T =
     catch parse(jsonStr, T)
 
 proc fromJson*[T](_: type Option[T], json: JsonNode): ?!Option[T] =
+  static:
+    echo "Instantiate serde fromJson Option[T] ", T
+
   if json.isNil or json.kind == JNull:
     return success(none T)
   without val =? T.fromJson(json), error:
@@ -48,7 +54,8 @@ proc fromJson*[T](_: type Option[T], json: JsonNode): ?!Option[T] =
 
 proc fromJson*[T: ref object or object](_: type ?T, json: string): ?!Option[T] =
   static:
-    echo "Instantiate serde fromJson for ", T
+    echo "Instantiate serde fromJson ref object or object ", T
+
   when T is (StUInt or StInt):
     let jsn = newJString(json)
   else:

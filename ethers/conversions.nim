@@ -11,7 +11,7 @@ proc getOrRaise*[T, E](self: ?!T, exc: typedesc[E]): T {.raises: [E].} =
 
 proc fromJson*(_: typedesc[UInt256], json: JsonNode): ?!UInt256 =
   static:
-    echo "Instantiate ethers fromJson"
+    echo "Instantiate ethers fromJson UInt256"
   echo "Dispatch to nim-ethers"
   without result =? UInt256.fromHex(json.getStr()).catch, error:
     return UInt256.failure error.msg
