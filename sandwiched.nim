@@ -8,7 +8,7 @@ import pkg/stint
 import ./serde/deserializer
 import ./ethers/conversions
 
-proc sandwich*(client: RpcClient): ?UInt256 =
+proc sandwichOption*(client: RpcClient): ?UInt256 =
   var stream = unsafeMemoryInput("")
   type ReaderType = Reader(JrpcConv)
   var reader = init(ReaderType, stream, false, false)
@@ -16,3 +16,12 @@ proc sandwich*(client: RpcClient): ?UInt256 =
   discard reader.readValue(typeof ?UInt256)
   
   result = UInt256.none
+
+proc sandwichBare*(client: RpcClient): UInt256 =
+  var stream = unsafeMemoryInput("")
+  type ReaderType = Reader(JrpcConv)
+  var reader = init(ReaderType, stream, false, false)
+  
+  discard reader.readValue(typeof UInt256)
+  
+  result = default(UInt256)

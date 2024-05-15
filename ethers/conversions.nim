@@ -10,6 +10,8 @@ proc getOrRaise*[T, E](self: ?!T, exc: typedesc[E]): T {.raises: [E].} =
   val
 
 proc fromJson*(_: typedesc[UInt256], json: JsonNode): ?!UInt256 =
+  static:
+    echo "Instantiate ethers fromJson"
   echo "Dispatch to nim-ethers"
   without result =? UInt256.fromHex(json.getStr()).catch, error:
     return UInt256.failure error.msg
@@ -18,6 +20,12 @@ proc fromJson*(_: typedesc[UInt256], json: JsonNode): ?!UInt256 =
 proc readValue*[T: not JsonNode](
   r: var JsonReader[JrpcConv],
   result: var T) {.raises: [SerializationError, IOError].} =
+
+  static: 
+    echo "Instantiate readValue for type ", T
   
   var json = r.readValue(JsonNode)
   result = T.fromJson(json).getOrRaise(SerializationError)
+
+  static: 
+    echo "Done instantiating readValue for type ", T

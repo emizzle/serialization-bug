@@ -13,9 +13,9 @@ template expectJsonKind(
     expectedType: type, expectedKinds: set[JsonNodeKind], json: JsonNode
 ) =
   if json.isNil or json.kind notin expectedKinds:
-    return newException(
-      ValueError, "Expected JSON of type ", $expectedType, " but got ", json.kind
-    )
+    return failure(newException(
+      ValueError, "Expected JSON of type " & $expectedType & " but got " & $json.kind
+    ))
 
 template expectJsonKind*(expectedType: type, expectedKind: JsonNodeKind, json: JsonNode) =
   expectJsonKind(expectedType, {expectedKind}, json)
@@ -47,6 +47,8 @@ proc fromJson*[T](_: type Option[T], json: JsonNode): ?!Option[T] =
   success(val.some)
 
 proc fromJson*[T: ref object or object](_: type ?T, json: string): ?!Option[T] =
+  static:
+    echo "Instantiate serde fromJson for ", T
   when T is (StUInt or StInt):
     let jsn = newJString(json)
   else:
