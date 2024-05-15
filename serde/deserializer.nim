@@ -9,47 +9,18 @@ import ./parser
 export stdjson
 export chronicles
 
-type UnexpectedKindError* = object of CatchableError
-
-proc newUnexpectedKindError*(
-    expectedType: type, expectedKinds: string, json: JsonNode
-): ref UnexpectedKindError =
-  let kind =
-    if json.isNil:
-      "nil"
-    else:
-      $json.kind
-  newException(
-    UnexpectedKindError,
-    "deserialization to " & $expectedType & " failed: expected " & expectedKinds &
-      " but got " & $kind,
-  )
-
-proc newUnexpectedKindError*(
-    expectedType: type, expectedKinds: set[JsonNodeKind], json: JsonNode
-): ref UnexpectedKindError =
-  newUnexpectedKindError(expectedType, $expectedKinds, json)
-
-proc newUnexpectedKindError*(
-    expectedType: type, expectedKind: JsonNodeKind, json: JsonNode
-): ref UnexpectedKindError =
-  newUnexpectedKindError(expectedType, {expectedKind}, json)
-
-
 template expectJsonKind(
     expectedType: type, expectedKinds: set[JsonNodeKind], json: JsonNode
 ) =
   if json.isNil or json.kind notin expectedKinds:
-    return failure(newUnexpectedKindError(expectedType, expectedKinds, json))
+    return newException(
+      ValueError, "Expected JSON of type ", $expectedType, " but got ", json.kind
+    )
 
 template expectJsonKind*(expectedType: type, expectedKind: JsonNodeKind, json: JsonNode) =
   expectJsonKind(expectedType, {expectedKind}, json)
 
 proc fromJson*(T: typedesc[StUint or StInt], json: JsonNode): ?!T =
-  static:
-    echo "Instantiate UInt256 nim-serde"
-    echo currentSourcePath()
-
   echo "Dispatch to nim-serde"
   expectJsonKind(T, JString, json)
   let jsonStr = json.getStr
