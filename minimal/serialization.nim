@@ -5,4 +5,4 @@ proc readValues*(T: type): T  =
     echo "Mixing in readValue"
 
   result = default(T)
-  readValue(result) # should trigger cascading resolution
+  readValue(result) # triggers cascading resolution

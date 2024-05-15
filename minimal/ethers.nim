@@ -5,7 +5,7 @@ proc fromJson*(T: typedesc[B]) =
     echo "instantiate fromJson ethers B"
     echo currentSourcePath()
 
-  echo "nim-ethers fromJson"
+  echo "ethers fromJson"
 
 proc readValue*[T](result: var T) =
   # Calls
