@@ -61,3 +61,5 @@ proc fromJson*[T: ref object or object](_: type ?T, json: string): ?!Option[T] =
   else:
     let jsn = ?JsonNode.parse(json) # full qualification required in-module only
   Option[T].fromJson(jsn)
+
+static: discard Option[UInt256].fromJson("")
